@@ -34,7 +34,7 @@ public class ProdutoDAO {
     }
 
     public void cadastrarProduto(Produto produto){
-        String sql = "insert into produtos(nomeProduto, quantidadeProduto, precoCusto, precoVenda) value (?,?,?,?)";
+        String sql = "insert into produtos(nomeProduto, quantidadeProduto, valorCusto, valorVenda) value (?,?,?,?)";
         try{
             PreparedStatement stml = connection.prepareStatement(sql);
             stml.setString(1, produto.getNomeProduto());
@@ -60,8 +60,8 @@ public class ProdutoDAO {
                 produto.setIdProduto(resultSet.getLong("idProduto"));
                 produto.setNomeProduto(resultSet.getString("nomeProduto"));
                 produto.setQuantidadeProduto(resultSet.getLong("quantidadeProduto"));
-                produto.setValorCusto(resultSet.getDouble("precoCusto"));
-                produto.setValorVenda(resultSet.getDouble("precoVenda"));
+                produto.setValorCusto(resultSet.getDouble("valorCusto"));
+                produto.setValorVenda(resultSet.getDouble("valorVenda"));
                 produtos.add(produto);
             }
             return produtos;
@@ -93,10 +93,10 @@ public class ProdutoDAO {
                 sql = "update produtos set quantidadeProduto = ? where idProduto = ?";
                 break;
             case 3:
-                sql = "update produtos set precoCusto = ? where idProduto = ?";
+                sql = "update produtos set valorCusto = ? where idProduto = ?";
                 break;
             case 4:
-                sql = "update produtos set precoVenda = ? where idProduto = ?";
+                sql = "update produtos set valorVenda = ? where idProduto = ?";
                 break;
         }
         try{
